@@ -18,6 +18,15 @@
   </div>
 
   <input class="btn btn-primary" type="submit"/>
+
+  @error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+
+  @error('body')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+
 </form>
 
 @endsection
