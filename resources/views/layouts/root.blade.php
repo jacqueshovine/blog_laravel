@@ -10,7 +10,10 @@
     </head>
     <body class="antialiased">
 
+      @include('components.navbar')
+
       <div class="container-fluid">
+
         <!-- Lors du rendu de la page, on part du haut du fichier puis on attend la partie body -->
         @yield('body')
       
