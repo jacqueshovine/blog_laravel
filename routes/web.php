@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::resource('articles', ArticleController::class);
 
-Route::post('/comments', [CommentController::class, 'store']);
+Route::post('/articles/{article}/comments', [CommentController::class, 'store']);
 // Route::resource('comments', CommentController::class);
 
 Route::get('/dashboard', function () {

@@ -8,7 +8,7 @@
 
 <p>Add new comment</p>
 
-<form method="POST" action="/comments">
+<form method="POST" action="/articles/{{ $article->id }}/comments">
     @csrf
     <div class="mb-3">
         <label class="form-label" for="author">Author</label>
@@ -20,7 +20,11 @@
         <textarea class="form-control" name="body" id="body"></textarea>
     </div>
 
+    <!--
+    Grâce au route model binding, pas besoin de passer l'id ici. Laravel injecte directement l'instance d'article dans ma route.
+    https://laravel.com/docs/8.x/routing#route-model-binding
     <input type="hidden" value="{{ $article->id }}" name="article_id">
+    -->
 
     <input type="submit" value="Post comment"/>
 </form>
