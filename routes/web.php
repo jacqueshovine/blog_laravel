@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::resource('articles', ArticleController::class);
+
+Route::post('/comments', [CommentController::class, 'store']);
+// Route::resource('comments', CommentController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

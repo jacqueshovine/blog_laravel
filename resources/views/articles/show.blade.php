@@ -6,6 +6,25 @@
 
 <p>{{ $article->body }}</p>
 
+<p>Add new comment</p>
+
+<form method="POST" action="/comments">
+    @csrf
+    <div class="mb-3">
+        <label class="form-label" for="author">Author</label>
+        <input class="form-control" type="text" name="author" id="author"/>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label" for="body">Comment</label>
+        <textarea class="form-control" name="body" id="body"></textarea>
+    </div>
+
+    <input type="hidden" value="{{ $article->id }}" name="article_id">
+
+    <input type="submit" value="Post comment"/>
+</form>
+
 <h2>Comments</h2>
 
 <!-- Pour avoir accès à la propriété comments, il faut avoir déclaré la relation hasMany dans le modèle Article. -->
