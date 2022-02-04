@@ -15,9 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // Article::all()->dump();
-
-        return view('articles.index', ['articles' => Article::all()]);
+        // Article::all() renvoie une collection Laravel https://laravel.com/docs/8.x/collections
+        return view('articles.index', ['articles' => Article::all()->sortByDesc('created_at')]);
     }
 
     /**
