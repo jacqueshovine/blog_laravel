@@ -13,4 +13,9 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class)->orderByDesc('created_at');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
