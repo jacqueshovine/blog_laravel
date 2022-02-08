@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Articles\StoreArticleRequest;
 use App\Http\Requests\Articles\UpdateArticleRequest;
 use App\Models\Article;
+use League\CommonMark\CommonMarkConverter;
 
 class ArticleController extends Controller
 {
@@ -39,7 +40,7 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         //
-        dump($request);
+        // dump($request);
         $article = new Article();
 
         // La propriété $fillable protège la création d'une instance d'article en authorisant que certaines propriétés définies.
@@ -50,7 +51,8 @@ class ArticleController extends Controller
 
         $article->save();
 
-        return redirect('/articles');
+        // return redirect('/articles/' + $article->id);
+        return redirect()->route('articles.show', ['article' => $article]);
     }
 
     /**
@@ -62,7 +64,11 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         //
-        return view('articles.show', ['article' => $article]);
+        $markdown_converter = new CommonMarkConverter();
+
+        $body_html = $markdown_converter->convert($article->body);
+
+        return view('articles.show', ['article' => $article, 'article_body' => $body_html]);
     }
 
     /**

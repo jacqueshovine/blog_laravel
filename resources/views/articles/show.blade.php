@@ -52,7 +52,7 @@
     </div>
 
     <div class="row mt-3">
-        <p>{{ $article->body }}</p>
+        <p>{!! $article_body !!}</p>
     </div>
 
     <div class="row">
