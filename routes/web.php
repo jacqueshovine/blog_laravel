@@ -25,7 +25,9 @@ Route::resource('articles', ArticleController::class);
 Route::post('/articles/{article}/comments', [CommentController::class, 'store']);
 // Route::resource('comments', CommentController::class);
 
-Route::post('/articles/{article}/likes', [LikeController::class, 'store']);
+// Un middleware est une classe qui va s'exécuter avant ou après la requête HTTP. 
+// Par exemple, ici on vérifie que le user est connecté
+Route::post('/articles/{article}/likes', [LikeController::class, 'store'])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

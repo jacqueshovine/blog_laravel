@@ -8,14 +8,16 @@
             <div class="col text-start mt-4">
                 <h1>My articles</h1>
             </div>
-            <div class="col text-end mt-4">
-                <a href="/articles/create" class="btn" style="background-color: coral; color:white;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                    Create new article</a>
-            </div>
+            @auth
+                <div class="col text-end mt-4">
+                    <a href="/articles/create" class="btn" style="background-color: coral; color:white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Create new article</a>
+                </div>
+            @endauth
         </div>
 
         <div class="row">
@@ -23,9 +25,9 @@
             <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
                 <div class="card">
                     <div class="card-header">
-                        <p class="fst-italic">{{ \Carbon\Carbon::parse($article->created_at)->format('d M Y') }}</p>
+                        <p class="fst-italic">{{ $article->created_at->format('d M Y') }}</p>
                     </div>
-                    <img src="https://source.unsplash.com/random/1200x800" class="card-img-top">
+                    <img src="https://www.placecage.com/200/300" class="card-img-top">
                     <div class="card-body">
                         <h2 class="card-title">{{ $article->title }} </h2>
                         <a href="/articles/{{ $article->id }}" class="btn mr-2" style="background-color: coral; color:white;">

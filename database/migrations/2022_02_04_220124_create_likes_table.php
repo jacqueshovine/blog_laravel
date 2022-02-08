@@ -24,6 +24,10 @@ class CreateLikesTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+
+            // Crée un index à partir des propriétés uniques pour empêcher les doublons.
+            // L'utilisateur 1 ne pourra liker l'article 1 qu'une fois.
+            $table->unique(['article_id', 'user_id']);
         });
     }
 

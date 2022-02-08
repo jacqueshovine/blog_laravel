@@ -5,7 +5,7 @@
 <main class="container">
     
     <div class="mt-3">
-        <img src="https://source.unsplash.com/random/900x500">
+        <img src="https://www.placecage.com/200/300">
     </div>
 
     <div class="btn-toolbar" role="toolbar">
@@ -59,7 +59,6 @@
         <form method="POST" action="/articles/{{ $article->id }}/likes">
             @csrf
             <div class="col text-start mt-4">
-                <input type="hidden" value="1" name="user_id">
                 <button type="submit" class="btn btn-outline" style="color:coral;border-color:coral;">
                     {{ $article->likes->count() }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">

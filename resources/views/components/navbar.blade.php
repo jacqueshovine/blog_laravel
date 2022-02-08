@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: coral;">
-    <div class="container-fluid">
+    <div class="container">
         {{-- <a class="navbar-brand" href="/"></a> --}}
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,17 @@
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item"><a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <a href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();" class="nav-link">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>    
+                        </li>
                     @else
                         <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
 
@@ -26,6 +37,13 @@
                     @endauth
             @endif
             </ul>
+        </div>
+        <div class="navbar-text">
+            @auth
+                Hello, {{ auth()->user()->name; }}
+            @else
+                Hello, guest
+            @endauth
         </div>
     </div>
 </nav>

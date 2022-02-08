@@ -7,19 +7,40 @@ use App\Models\Article;
 use App\Models\Like;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\isNull;
 
 class LikeController extends Controller
 {
     public function store(LikeRequest $request, Article $article)
-    {        
-        $like = new Like();
-        $user = User::find($request->get('user_id'));
+    {      
+        
+        $user = Auth::user();
 
-        $like->user_id = $request->get('user_id');
+        // Je stocke la requête dans une variable puis je l'exécute avec le get();
+        $like = Like::query()
+                    ->where('article_id', '=', $article->id)
+                    ->where('user_id', '=', $user->id)
+                    ->first();
 
-        $article->likes()->save($like);
-        $user->likes()->save($like);
+        if($like === null)
+        {
+            $like = new Like();
 
-        return view('articles.show', ['article' => $article]);
+            // J'associe un article au like, ce qui enregistre l'id de l'article dans la table like. 
+            $like->article()->associate($article);
+    
+            // Idem
+            $like->user()->associate($user);
+    
+            $like->save();
+        }
+        else
+        {
+            $like->delete();
+        }
+
+        return redirect()->route('articles.show', ['article' => $article]);
     }
 }

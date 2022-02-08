@@ -39,8 +39,11 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         //
-        // dump($request);
+        dump($request);
         $article = new Article();
+
+        // La propriété $fillable protège la création d'une instance d'article en authorisant que certaines propriétés définies.
+        // Article::create($request->all());
 
         $article->title = $request->get('title');
         $article->body = $request->get('body');
