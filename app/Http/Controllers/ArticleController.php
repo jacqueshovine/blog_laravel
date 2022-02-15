@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Articles\StoreArticleRequest;
 use App\Http\Requests\Articles\UpdateArticleRequest;
 use App\Models\Article;
 use League\CommonMark\CommonMarkConverter;
+use PhpParser\Node\Expr\Cast\String_;
 
 class ArticleController extends Controller
 {
@@ -64,11 +66,11 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         //
-        $markdown_converter = new CommonMarkConverter();
+        // $markdown_converter = new CommonMarkConverter();
 
-        $body_html = $markdown_converter->convert($article->body);
+        // $body_html = $markdown_converter->convert($article->body);
 
-        return view('articles.show', ['article' => $article, 'article_body' => $body_html]);
+        return view('articles.show', ['article' => $article, 'article_body' => Helper::convertMarkdown($article->body)]);
     }
 
     /**
