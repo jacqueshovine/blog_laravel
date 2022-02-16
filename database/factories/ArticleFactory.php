@@ -13,9 +13,13 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+
+        $article_status = ['published', 'draft'];
+
         return [
             'title' => $this->faker->text(100),
             'body' => $this->faker->text(150),
+            'status' => $article_status[rand(0,1)],
         ];
     }
 }
