@@ -101,20 +101,22 @@
     @endauth
 
     <div class="row mt-3">
-        <h2>Comments</h2>
+        <h2>Comments<span class="h4"> ({{ $article->comments->count() }})</span></h2>
     </div>
 
-    <!-- Pour avoir accès à la propriété comments, il faut avoir déclaré la relation hasMany dans le modèle Article. -->
-    @foreach ($article->comments as $comment)
-        <figure>
-            <blockquote class="blockquote">
-            <p>{{ $comment->body }}</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-                {{ $comment->author }}
-            </figcaption>
-        </figure>
-    @endforeach
+    <div class="row mt-3">
+        <!-- Pour avoir accès à la propriété comments, il faut avoir déclaré la relation hasMany dans le modèle Article. -->
+        @foreach ($article->comments as $comment)
+            <figure>
+                <blockquote class="blockquote">
+                <p>{{ $comment->body }}</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    {{ $comment->author }}
+                </figcaption>
+            </figure>
+        @endforeach
+    </div>
 
 </main>
 
