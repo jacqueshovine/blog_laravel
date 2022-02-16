@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::post('/articles/{article}/comments', [CommentController::class, 'store'])
 Route::post('/articles/{article}/likes', [LikeController::class, 'store'])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', ['articles' => Article::all()->sortByDesc('created_at')]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
