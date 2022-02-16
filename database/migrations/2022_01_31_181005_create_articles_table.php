@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('body');
+            $table->string('status')->default('draft');
         });
     }
 

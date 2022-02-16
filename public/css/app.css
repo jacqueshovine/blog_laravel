@@ -2,3 +2,15 @@
     background-color:coral; 
     color:white;
 }
+
+.btn-outline-custom {
+    color:coral;
+    border-color:coral;
+}
+
+.btn-outline-custom:hover, .btn-outline-custom:focus, .btn-outline-custom:active, .btn-outline-custom:checked {
+    color:white;
+    background-color: coral;
+    border-color: coral;
+    box-shadow: 0 0 0 0.25rem coral;
+}

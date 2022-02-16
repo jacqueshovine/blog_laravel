@@ -42,7 +42,6 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         //
-        // dump($request);
         $article = new Article();
 
         // La propriété $fillable protège la création d'une instance d'article en authorisant que certaines propriétés définies.
@@ -50,6 +49,7 @@ class ArticleController extends Controller
 
         $article->title = $request->get('title');
         $article->body = $request->get('body');
+        $article->status = $request->get('status');
 
         $article->save();
 
@@ -97,6 +97,7 @@ class ArticleController extends Controller
         //
         $article->title = $request->get('title');
         $article->body = $request->get('body');
+        $article->status = $request->get('status');
 
         $article->save();
 
