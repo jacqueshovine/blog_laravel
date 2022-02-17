@@ -15,6 +15,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            <input type="hidden" id="intended_url" name="intended_url" value="{{ $intended_url ?? '' }}"/>
+
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />

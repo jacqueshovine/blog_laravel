@@ -1,4 +1,4 @@
-.btn-custom {
+.btn-custom, .btn-custom:hover {
     background-color:coral; 
     color:white;
 }
