@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\UserRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -31,13 +32,15 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        // The validations rules below have been moved to the UserRequest request.
+        
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:50'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // ]);
 
         $user = User::create([
             'name' => $request->name,

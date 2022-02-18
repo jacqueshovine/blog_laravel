@@ -40,9 +40,10 @@
         </div>
         <div class="navbar-text">
             @auth
-                Hello, {{ auth()->user()->name; }}
+                Welcome, <a data-toggle="tooltip" data-placement="bottom" title="See profile" 
+                            href="/user/{{ auth()->user()->id }}">{{ auth()->user()->name; }}</a>
             @else
-                Hello, guest
+                Welcome, guest
             @endauth
         </div>
     </div>
