@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,8 +34,13 @@ Route::post('/articles/{article}/likes', [LikeController::class, 'store'])->midd
 
 // Route::get('/user/{id}', [UserController::class, 'show'])->middleware('auth');
 // Le middleware est défini dans le constructeur du controller
-Route::get('/user/{user}', [UserController::class, 'show']);
-Route::put('/user/{user}', [UserController::class, 'update']);
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user/{user}', 'show');
+    Route::put('/user/{user}', 'update');
+});
+
+// Route::resource('user', UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard', ['articles' => Article::all()->sortByDesc('created_at')]);

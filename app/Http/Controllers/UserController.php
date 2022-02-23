@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -27,7 +28,6 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        dump($user);die;
         if (!$this->isLoggedIn($user->id)) {
             return back()->withInput();
         }
@@ -36,7 +36,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return view('users.show', ['user' => $user]);
+        return view('users.profile', ['user' => $user]);
     }
 
     public function isLoggedIn($id)
